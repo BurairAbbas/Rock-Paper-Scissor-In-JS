@@ -7,10 +7,10 @@ function rpsGame(yourChoice) {
 
     console.log(botChoice);
 
-    let result = DecideWinner(humanChoice, botChoice);
-    console.log(result);
-    let message = FinalMessenge(result); // its object: (message: "you win", color: "green")
-
+    let results = DecideWinner(humanChoice, botChoice);
+    console.log(results);
+    message = FinalMessenge(results[0]); // its object: (message: "you win", color: "green")
+    console.log(message);
     // rpsFrontend(yourChoice, botChoice, message);
 }
 
@@ -42,7 +42,6 @@ function NumberToChoice(number) {
     // ["rock", "paper", "scissor"][0] gives rock, [1] gives paper, [2] gives scissor. More easy and short solution by clever 
 }
 
-
 function DecideWinner(humanChoice, botChoice) {
     // we can go your if and else statements but it need alot of work. So, we use datastrructure which is suited for us.
 
@@ -56,6 +55,18 @@ function DecideWinner(humanChoice, botChoice) {
     var botScore = rpsDatabase[botChoice][humanChoice];
 
     return [yourScore, botScore];
+}
+
+function FinalMessenge(yourScore){
+    if(yourScore === 0 ){
+        return {"message": "You Lost", "color": "red"};
+    }
+    else if(yourScore === 0.5){
+        return {"message" : "You tired", "color" : "yellow"};
+    }
+    else{
+        return {"message": "You Win!", "color":"Green"};
+    }
 }
 
 
