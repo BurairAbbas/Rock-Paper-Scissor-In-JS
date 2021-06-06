@@ -11,7 +11,7 @@ function rpsGame(yourChoice) {
     console.log(results);
     message = FinalMessenge(results[0]); // its object: (message: "you win", color: "green")
     console.log(message);
-    // rpsFrontend(yourChoice, botChoice, message);
+    rpsFrontend(humanChoice, botChoice, message);
 }
 
 function PickRandomNumber() {
@@ -67,6 +67,37 @@ function FinalMessenge(yourScore){
     else{
         return {"message": "You Win!", "color":"Green"};
     }
+}
+
+function rpsFrontend(yourChoice, botChoice, message){
+    var imagesDataBase = {
+        "rock" : document.getElementById("rock").src,
+        "paper" : document.getElementById("paper").src,
+        "scissor" : document.getElementById("scissor").src
+    }
+
+    //remove all images
+    document.getElementById("rock").remove();
+    document.getElementById("paper").remove();
+    document.getElementById("scissor").remove();
+
+    let humanDiv = document.createElement("div");
+    let botDiv = document.createElement("div");
+    let messageDiv = document.createElement("div");
+
+    humanDiv.innerHTML = "<img src='"+imagesDataBase[yourChoice]+"' width='150' height='150' style='box-shadow: 0px 10px 50px rgb(75, 75, 211)' >";
+    messageDiv.innerHTML = "<h1 style = 'color: " + message['color'] + "' >"+message['message']+"</h1>";
+    console.log( message['color']);
+   botDiv.innerHTML = "<img src='"+imagesDataBase[botChoice]+"' width='150' height='150' style=' box-shadow: 0px 10px 50px rgb(240, 65, 80)'>";
+   
+    document.getElementById("flex-box-rps-div").appendChild(humanDiv);
+    document.getElementById("flex-box-rps-div").appendChild(messageDiv);
+    document.getElementById("flex-box-rps-div").appendChild(botDiv);
+
+
+
+
+
 }
 
 
